@@ -21,6 +21,7 @@ The app itself is intentionally simple — the focus is the infrastructure aroun
 - kubectl
 
 ## Learning Path
+- Stage 0.1 - Create GitHub repo
 - Stage 0 — Run app + DB with plain Docker
 - Stage 1 — First Kubernetes Pod
 - Stage 2 — Deployments
