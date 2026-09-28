@@ -23,9 +23,10 @@ The app itself is intentionally simple — the focus is the infrastructure aroun
 ## Stages
 - Stage 0 - Create GitHub repo
 - Stage 1 - Prepare the env: network, volume, db server
+- Document Everything for Notion notes
 - Stage 2 - Write the code for the app
 - Stage 3 — Run app and build its image
-- Stage 4 - Document everything 
+- Document Everything for Notion notes
 - Stage  — First Kubernetes Pod
 - Stage  — Deployments
 - Stage  — Services
