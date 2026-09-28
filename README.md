@@ -23,8 +23,7 @@ The app itself is intentionally simple — the focus is the infrastructure aroun
 ## Stages
 - Stage 0 - Create GitHub repo
 - [Stage 1 - Prepare the env](docs/stage-1-env.md)
-- [Stage 2 - Write app, build and run](docs/stage-2-3-app.md)
-- Stage 3 — Run app and build its image
+- [Stage 2 - Write app, build and run](docs/stage-2-app.md)
 - Stage  — First Kubernetes Pod
 - Stage  — Deployments
 - Stage  — Services
