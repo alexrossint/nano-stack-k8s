@@ -19,6 +19,7 @@ The app itself is intentionally simple — the focus is the infrastructure aroun
 - Docker
 - Kubernetes (via Colima)
 - kubectl
+- helm
 
 ## Stages
 We create an enviroment in Docker because it seemed easy at the moment. Simple, fast shipping and not really secured.
