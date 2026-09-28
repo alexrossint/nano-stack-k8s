@@ -20,20 +20,23 @@ The app itself is intentionally simple — the focus is the infrastructure aroun
 - Kubernetes (via Colima)
 - kubectl
 
-## Learning Path
-- Stage 0.1 - Create GitHub repo
-- Stage 0 — Run app + DB with plain Docker
-- Stage 1 — First Kubernetes Pod
-- Stage 2 — Deployments
-- Stage 3 — Services
-- Stage 4 — ConfigMaps & Secrets
-- Stage 5 — Persistent storage
-- Stage 6 — Multi-service app (web + DB)
-- Stage 7 — Namespaces
-- Stage 8 — Ingress
-- Stage 9 — Scaling
-- Stage 10 — Health checks
-- Stage 11 — Rolling updates & rollbacks
-- Stage 12 — Resource limits
-- Stage 13 — Helm packaging
-- Stage 14 — Basic CI/CD
+## Stages
+- Stage 0 - Create GitHub repo
+- Stage 1 - Prepare the env: network, volume, db server
+- Stage 2 - Write the code for the app
+- Stage 3 — Run app
+- Stage 4 - Document everything 
+- Stage  — First Kubernetes Pod
+- Stage  — Deployments
+- Stage  — Services
+- Stage  — ConfigMaps & Secrets
+- Stage — Persistent storage
+- Stage  — Multi-service app (web + DB)
+- Stage  — Namespaces
+- Stage  — Ingress
+- Stage  — Scaling
+- Stage — Health checks
+- Stage — Rolling updates & rollbacks
+- Stage — Resource limits
+- Stage — Helm packaging
+- Stage — Basic CI/CD
