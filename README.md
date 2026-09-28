@@ -21,10 +21,13 @@ The app itself is intentionally simple — the focus is the infrastructure aroun
 - kubectl
 
 ## Stages
-- Stage 0 - Create GitHub repo
+We create an enviroment in Docker because it seemed easy at the moment. Simple, fast shipping and not really secured.
 - [Stage 1 - Prepare the env](docs/stage-1-env.md)
 - [Stage 2 - Write app, build and run](docs/stage-2-app.md)
-- Stage  — First Kubernetes Pod
+
+Our user database is growing, latency spikes and crashes during weekends. We cannot maintain it in Docker anymore. 
+A decision was made to migrate to kubernetes and make it more secure and scalable to traffic.
+- Stage 3  — [Create postgres pod with secret and volume](stage-3-postges-pod.md)
 - Stage  — Deployments
 - Stage  — Services
 - Stage  — ConfigMaps & Secrets
