@@ -23,7 +23,7 @@ The app itself is intentionally simple — the focus is the infrastructure aroun
 
 ## Stages (are updated as the project goes)
 We create an enviroment in Docker because it seemed easy at the moment. Simple, fast shipping and not really secured.
-- [Stage 1 - Prepare the enviroment](docs/stage-1-enviroment.md)
+- [Stage 1 - Prepare the enviroment](docs/stage-1-enviroment-docker.md)
 - [Stage 2 - Write app, build and run](docs/stage-2-deploy-app.md)
 
 Our user database is growing, latency spikes and crashes during weekends. We cannot maintain it in Docker anymore. 
