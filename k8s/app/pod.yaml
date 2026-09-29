@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nano-app
+  labels:
+    app: nano-app
+spec:
+  containers:
+    - name: nano-app
+      image: nano-stack-app:1.0
+      env:
+        - name: DB_HOST
+          value: postgres
+        - name: DB_NAME
+          value: nanostack
+        - name: DB_USER
+          value: nanouser
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: password
+      ports:
+        - containerPort: 5000

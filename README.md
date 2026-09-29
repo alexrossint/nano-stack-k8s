@@ -6,7 +6,7 @@ to a migration to Kubernetes setup — all running locally.
 
 ## Goal
 Learn Kubernetes fundamentals through a hands-on, staged project
-rather than isolated examples. Each stage adds one new concept.
+rather than isolated examples. Each stage adds on new concept.
 
 ## The App
 A minimal Flask web app + Postgres database.
@@ -39,7 +39,7 @@ A decision was made to migrate to Kubernetes and make it secured and scalable to
 - [Stage 4 - Create a service for the postgres pod](docs/stage-4-service.md)
 - [Stage 5 - Database migration from Container to Pod](docs/stage-5-db-migration.md)
 - [Stage 6 - Building the app Pod](docs/stage-6-app-pod.md)
-- Stage  — Multi-service app (web + DB)
+- [Stage 7 - Create dev (env) namespace and test the app before prod launch](docs/stage-7-dev-namespace.md)
 - Stage  — Namespaces
 - Stage  — Ingress
 - Stage  — Scaling
