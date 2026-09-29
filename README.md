@@ -41,7 +41,7 @@ enviroment to test new features in the future.
 - [Stage 5 - Database migration from Container to Pod](docs/stage-5-db-migration.md)
 - [Stage 6 - Building the app Pod](docs/stage-6-app-pod.md)
 - [Stage 7 - Create dev (env) namespace and test the app before prod launch](docs/stage-7-dev-namespace.md)
-- Stage  — Namespaces
+- [Stage 8 - Create prod app pod](docs/stage-8-prod-pod.md)
 - Stage  — Ingress
 - Stage  — Scaling
 - Stage — Health checks
