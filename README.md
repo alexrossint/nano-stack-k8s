@@ -13,13 +13,20 @@ A minimal Flask web app + Postgres database.
 The app shows a page and counts visitors, storing the count in the database.
 The app itself is intentionally simple — the focus is the infrastructure around it.
 
+## Prerequisites
+I am using Colima with Kubernetes on Mac because it's lightweight and easy to get running via Homebrew:
+```bash
+brew install colima
+brew install kubectl
+colima start --kubernetes
+```
+Docker Desktop app with Minikube can also work.
+
 ## Tech Stack
 - Python (Flask)
 - PostgreSQL
-- Docker
-- Kubernetes (via Colima)
-- kubectl
-- helmw
+- Docker & Kubernetes kubectl (via Colima)
+- helm
 
 ## Stages (are updated as the project goes)
 We create an enviroment in Docker because it seemed easy at the moment. Simple, fast shipping and not really secured.
