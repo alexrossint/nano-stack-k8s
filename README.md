@@ -27,13 +27,11 @@ We create an enviroment in Docker because it seemed easy at the moment. Simple, 
 - [Stage 2 - Write app, build and run the web service](docs/stage-2-deploy-app.md)
 
 Our user database is growing, latency spikes and crashes during weekends. We cannot maintain it in Docker anymore. 
-A decision was made to migrate to kubernetes and make it more secure and scalable to traffic spikes.
+A decision was made to migrate to Kubernetes and make it secured and scalable to traffic spikes.
 - [Stage 3 - Create postgres pod with secret and PVC volume](docs/stage-3-postges-pvc-pod.md)
 - [Stage 4 - Create a service for the postgres pod](docs/stage-4-service.md)
 - [Stage 5 - Database migration from Container to Pod](docs/stage-5-db-migration.md)
-- Stage  — Services
-- Stage  — ConfigMaps & Secrets
-- Stage — Persistent storage
+- [Stage 6 - Building the app Pod](docs/stage-6-app-pod.md)
 - Stage  — Multi-service app (web + DB)
 - Stage  — Namespaces
 - Stage  — Ingress
