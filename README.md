@@ -2,7 +2,7 @@
 
 A small learning project simulating a 2-person startup building
 and deploying a simple web app, step by step, from plain Docker
-to a Kubernetes setup — all running locally.
+to a migration to Kubernetes setup — all running locally.
 
 ## Goal
 Learn Kubernetes fundamentals through a hands-on, staged project
@@ -21,14 +21,14 @@ The app itself is intentionally simple — the focus is the infrastructure aroun
 - kubectl
 - helmw
 
-## Stages
+## Stages (are updated as the project goes)
 We create an enviroment in Docker because it seemed easy at the moment. Simple, fast shipping and not really secured.
-- [Stage 1 - Prepare the env](docs/stage-1-env.md)
-- [Stage 2 - Write app, build and run](docs/stage-2-app.md)
+- [Stage 1 - Prepare the enviroment in Docker](docs/stage-1-enviroment-docker.md)
+- [Stage 2 - Write app, build and run the web service](docs/stage-2-deploy-app.md)
 
 Our user database is growing, latency spikes and crashes during weekends. We cannot maintain it in Docker anymore. 
 A decision was made to migrate to kubernetes and make it more secure and scalable to traffic.
-- Stage 3  — [Create postgres pod with secret and volume](stage-3-postges-pod.md)
+- [Stage 3 - Create postgres pod with secret and volume](stage-3-postges-pod.md)
 - Stage  — Deployments
 - Stage  — Services
 - Stage  — ConfigMaps & Secrets
