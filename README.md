@@ -36,12 +36,10 @@ We create an enviroment in Docker because it seemed easy at the moment. Simple, 
 Our user database is growing, latency spikes and crashes during weekends. We cannot maintain it in Docker anymore. 
 A decision was made to migrate to Kubernetes and make it secured and scalable to traffic spikes. We also create a DEV
 enviroment to test new features in the future.
-- [Stage 3 - Create postgres pod with secret and PVC volume](docs/stage-3-postges-pvc-pod.md)
-- [Stage 4 - Create a service for the postgres pod](docs/stage-4-service.md)
-- [Stage 5 - Database migration from Container to Pod](docs/stage-5-db-migration.md)
-- [Stage 6 - Building the app Pod](docs/stage-6-app-pod.md)
-- [Stage 7 - Create dev (env) namespace and test the app before prod launch](docs/stage-7-dev-namespace.md)
-- [Stage 8 - Create prod app pod](docs/stage-8-prod-pod.md)
+- [Stage 3 - Create "dev" and "prod" Namespaces](docs/stage-3-dev-prod-namespaces.md)
+- [Stage 4 - Create Postgres Pods with Volume, Secret and Service](docs/stage-4-postges-pvc-secret-pod-service.md)
+- [Stage 5 - Deploy App Pod for both Namespaces](docs/stage-5-app-pods-dev-prod.md)
+- [Stage 6 - Database migration and cutover](docs/stage-6-migration-cutover.md)
 - Stage  — Ingress
 - Stage  — Scaling
 - Stage — Health checks
