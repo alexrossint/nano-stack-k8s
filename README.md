@@ -37,8 +37,8 @@ Our user database is growing, latency spikes and crashes during weekends. We can
 A decision was made to migrate to Kubernetes and make it secured and scalable to traffic spikes. We also create a DEV
 enviroment to test new features in the future.
 - [Stage 3 - Create "dev" and "prod" Namespaces](docs/stage-3-dev-prod-namespaces.md)
-- [Stage 4 - Create Postgres Pods with Volume, Secret and Service](docs/stage-4-postges-pvc-secret-pod-service.md)
-- [Stage 5 - Deploy App Pod for both Namespaces](docs/stage-5-app-pods-dev-prod.md)
+- [Stage 4 - Deploy Postgres Pods with Volume, Secret and Service for both Namespaces](docs/stage-4-postges-pvc-secret-pod-service.md)
+- [Stage 5 - Deploy App Pod for both Namespaces including Service](docs/stage-5-app-pods-dev-prod.md)
 - [Stage 6 - Database migration and cutover](docs/stage-6-migration-cutover.md)
 - Stage  — Ingress
 - Stage  — Scaling

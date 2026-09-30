@@ -1,6 +1,6 @@
-# Stage 5, Deploy the app Pods in dev and prod
+# Stage 5, Deploy the app Pods and Service for "dev "and "prod" Namespaces
 
-With Postgres running in both namespaces, we deploy the app itself the same way, once in `dev` to prove it connects correctly to a clean database, once in `prod` pointed at the same setup, both using the same files.
+With Postgres running in both namespaces, we deploy the app itself the same way, once in `dev` to prove it connects correctly to a clean database, once in `prod` pointed at the same setup, both using the same files. Then we expose the app with a Service, so it can be reached from outside the cluster too.
 
 ## Step 1, confirm the image is visible to the cluster
 
@@ -50,7 +50,7 @@ spec:
 `DB_HOST: postgres` is the Postgres Service name from Stage 4, resolved by the cluster's internal DNS, same job the container name did on `nano-net` in Docker.
 `DB_PASSWORD` pulls straight from the existing `postgres-secret` using `valueFrom.secretKeyRef`, instead of a plain value, so the password is never written in the file itself.
 No volumes here, the app itself has nothing to persist.
-`labels: app: nano-app` tags this Pod, so a Service can find it later.
+`labels: app: nano-app` tags this Pod, so a Service can find it.
 
 ### Apply it, dev first
 
@@ -93,4 +93,4 @@ Returns the app's HTML, showing "visitor number 1", dev's own fresh, empty datab
 kubectl exec -n prod nano-app -- python -c "import urllib.request; print(urllib.request.urlopen('http://localhost:5000').read())"
 ```
 
-Returns the same HTML, this time against prod's database, confirming the same chain works there too, each namespace fully isolated from the other.
+Returns the same HTML, this time against prod's database, confirming
