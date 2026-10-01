@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nano-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nano-app
+  template:
+    metadata:
+      labels:
+        app: nano-app
+    spec:
+      containers:
+        - name: nano-app
+          image: nano-stack-app:1.0
+          env:
+            - name: DB_HOST
+              value: postgres
+            - name: DB_NAME
+              value: nanostack
+            - name: DB_USER
+              value: nanouser
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: password
+          ports:
+            - containerPort: 5000
