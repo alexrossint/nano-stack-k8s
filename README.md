@@ -70,11 +70,22 @@ Clients were given raw port numbers to reach the app, not something we could han
 Right now, each app runs as exactly one Pod. If that one Pod crashes, or gets overwhelmed by traffic, there's no backup, no second copy to take the load or keep serving while it recovers.
 
 - [Stage 8 - Scaling](docs/stage-8-scaling.md)
+
 ## What's Next
 
-- Scaling, running multiple replicas of the app
-- Health checks, liveness and readiness probes
+- ConfigMap, moving plain settings out of the Pod spec into their own object
+- Health checks, liveness and readiness probes, the real fix for the `503` gap seen during scaling
+- New app version 2.0, redesigned UI
 - Rolling updates and rollbacks
 - Resource limits
 - Helm, packaging the whole setup as a reusable chart
 - Basic CI/CD
+
+## Concepts to Know, Not Built Here
+
+A few real-world Kubernetes topics worth recognizing by name, even without hands-on practice in this project.
+
+- RBAC, controlling who can do what inside a cluster
+- NetworkPolicies, firewall-style rules between Pods
+- StatefulSets, the proper way to run databases in Kubernetes, used a bare Pod here for simplicity
+- Multi-node scheduling, this project runs on a single node, so pod placement across machines never comes into play
