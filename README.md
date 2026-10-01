@@ -53,6 +53,7 @@ enviroment to test new features in the future.
 - [Stage 4 - Deploy Postgres Pods with Volume, Secret and Service for both Namespaces](docs/stage-4-postges-pvc-secret-pod-service.md)
 - [Stage 5 - Deploy App Pod and Service for "dev" and "prod" Namespaces](docs/stage-5-app-pods-dev-prod.md)
 - [Stage 6 - Database migration and cutover](docs/stage-6-migration-cutover.md)
+- [Stage 7 - Expose the App with Ingress for "dev" and "prod"](docs/stage-7-ingress.md)
 
 ## What's Next
 
