@@ -50,14 +50,28 @@ A decision was made to migrate to Kubernetes and make it secured and scalable to
 enviroment to test new features in the future.
 
 - [Stage 3 - Create "dev" and "prod" Namespaces](docs/stage-3-dev-prod-namespaces.md)
+
+We want our database setup secured from the start, no plain-text passwords, storage that survives a crash, and a stable way for the app to find it.
+
 - [Stage 4 - Deploy Postgres Pods with Volume, Secret and Service for both Namespaces](docs/stage-4-postges-pvc-secret-pod-service.md)
+
+With the database ready, the app itself needs to run the same way, built from the same image, pointed at the right database, and reachable by something other than its own changing IP.
+
 - [Stage 5 - Deploy App Pod and Service for "dev" and "prod" Namespaces](docs/stage-5-app-pods-dev-prod.md)
+
+The real data still lived in the old Docker setup. Before trusting Kubernetes with production, we needed to move that data over safely, without losing anything, and without real downtime for users.
+
 - [Stage 6 - Database migration and cutover](docs/stage-6-migration-cutover.md)
+
+Clients were given raw port numbers to reach the app, not something we could hand out in a real company. We needed one clean, stable entry point instead.
+
 - [Stage 7 - Expose the App with Ingress for "dev" and "prod"](docs/stage-7-ingress.md)
 
+Right now, each app runs as exactly one Pod. If that one Pod crashes, or gets overwhelmed by traffic, there's no backup, no second copy to take the load or keep serving while it recovers.
+
+- [Stage 8 - Scaling](docs/stage-8-scaling.md)
 ## What's Next
 
-- Ingress, a real hostname instead of a raw NodePort
 - Scaling, running multiple replicas of the app
 - Health checks, liveness and readiness probes
 - Rolling updates and rollbacks
