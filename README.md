@@ -40,7 +40,7 @@ Docker Desktop with Minikube can also work as an alternative.
 
 *(updated as the project goes)*
 
-### Staring up - Docker
+### Starting up - Docker
 We created an environment in Docker because it seemed easy at the moment, simple, fast to ship, not really secured.<br>
 
 [Stage 1 - Prepare the enviroment in Docker](docs/stage-1-enviroment-docker.md)<br>
