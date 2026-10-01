@@ -40,40 +40,58 @@ Docker Desktop with Minikube can also work as an alternative.
 
 *(updated as the project goes)*
 
-We created an environment in Docker because it seemed easy at the moment, simple, fast to ship, not really secured.
+### Staring up - Docker
+We created an environment in Docker because it seemed easy at the moment, simple, fast to ship, not really secured.<br>
 
-- [Stage 1 - Prepare the enviroment in Docker](docs/stage-1-enviroment-docker.md)
-- [Stage 2 - Write app, build and run the web service](docs/stage-2-deploy-app.md)
+[Stage 1 - Prepare the enviroment in Docker](docs/stage-1-enviroment-docker.md)<br>
+[Stage 2 - Write app, build and run the web service](docs/stage-2-deploy-app.md)<br>
+
+___
+
+### Growing bigger - lets move to Kubernetes
 
 Our user database is growing, latency spikes and crashes during weekends. We cannot maintain it in Docker anymore.
-A decision was made to migrate to Kubernetes and make it secured and scalable to traffic spikes. We also create a DEV
+<br>A decision was made to migrate to Kubernetes and make it secured and scalable to traffic spikes. <br>We also create a DEV
 enviroment to test new features in the future.
 
-- [Stage 3 - Create "dev" and "prod" Namespaces](docs/stage-3-dev-prod-namespaces.md)
+[Stage 3 - Create "dev" and "prod" Namespaces](docs/stage-3-dev-prod-namespaces.md)
+___
 
 We want our database setup secured from the start, no plain-text passwords, storage that survives a crash, and a stable way for the app to find it.
 
-- [Stage 4 - Deploy Postgres Pods with Volume, Secret and Service for both Namespaces](docs/stage-4-postges-pvc-secret-pod-service.md)
+[Stage 4 - Deploy Postgres Pods with Volume, Secret and Service for both Namespaces](docs/stage-4-postges-pvc-secret-pod-service.md)
+___
 
 With the database ready, the app itself needs to run the same way, built from the same image, pointed at the right database, and reachable by something other than its own changing IP.
 
-- [Stage 5 - Deploy App Pod and Service for "dev" and "prod" Namespaces](docs/stage-5-app-pods-dev-prod.md)
+[Stage 5 - Deploy App Pod and Service for "dev" and "prod" Namespaces](docs/stage-5-app-pods-dev-prod.md)
+___
 
 The real data still lived in the old Docker setup. Before trusting Kubernetes with production, we needed to move that data over safely, without losing anything, and without real downtime for users.
 
-- [Stage 6 - Database migration and cutover](docs/stage-6-migration-cutover.md)
+[Stage 6 - Database migration and cutover](docs/stage-6-migration-cutover.md)
+___
 
+### The app runs on Kubernetes now, a few things still need hardening
 Clients were given raw port numbers to reach the app, not something we could hand out in a real company. We needed one clean, stable entry point instead.
 
-- [Stage 7 - Expose the App with Ingress for "dev" and "prod"](docs/stage-7-ingress.md)
+[Stage 7 - Expose the App with Ingress for "dev" and "prod"](docs/stage-7-ingress.md)
+___
 
 Right now, each app runs as exactly one Pod. If that one Pod crashes, or gets overwhelmed by traffic, there's no backup, no second copy to take the load or keep serving while it recovers.
 
-- [Stage 8 - Scaling](docs/stage-8-scaling.md)
+[Stage 8 - Deployment for Scaling and Replicas](docs/stage-8-scaling.md)
+___
+
+Each app's settings, database name and user, were typed directly into the Deployment itself, mixed in with how the Pod runs. We wanted plain, non-sensitive config kept separate and reusable, the same way Secrets already separated out the password.
+
+[Stage 9 - ConfigMap, moving plain settings out of the Deployment](docs/stage-9-configmap.md)
+
+___
+
 
 ## What's Next
 
-- ConfigMap, moving plain settings out of the Pod spec into their own object
 - Health checks, liveness and readiness probes, the real fix for the `503` gap seen during scaling
 - New app version 2.0, redesigned UI
 - Rolling updates and rollbacks

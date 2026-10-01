@@ -19,9 +19,15 @@ spec:
             - name: DB_HOST
               value: postgres
             - name: DB_NAME
-              value: nanostack
+              valueFrom:
+                configMapKeyRef:
+                  name: nano-app-config
+                  key: DB_NAME
             - name: DB_USER
-              value: nanouser
+              valueFrom:
+                configMapKeyRef:
+                  name: nano-app-config
+                  key: DB_USER
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
