@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nano-app-config
+data:
+  DB_NAME: nanostack
+  DB_USER: nanouser
