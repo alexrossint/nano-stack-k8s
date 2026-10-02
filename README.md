@@ -16,7 +16,7 @@ Learn Kubernetes fundamentals through a hands-on, staged project rather than iso
 
 A minimal Flask web app plus a Postgres database. It shows a page and counts visitors, storing the count in the database. The app itself is intentionally simple, the focus is the infrastructure around it.
 
-![img.png](img.png)
+![img_1.png](img_1.png)
 
 ## Prerequisites
 
