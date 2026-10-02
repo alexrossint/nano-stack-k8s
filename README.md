@@ -103,11 +103,3 @@ With self-healing and scaling in place, a Pod could still receive traffic before
 - Helm, packaging the whole setup as a reusable chart
 - Basic CI/CD
 
-## Concepts to Know, Not Built Here
-
-A few real-world Kubernetes topics worth recognizing by name, even without hands-on practice in this project.
-
-- RBAC, controlling who can do what inside a cluster
-- NetworkPolicies, firewall-style rules between Pods
-- StatefulSets, the proper way to run databases in Kubernetes, used a bare Pod here for simplicity
-- Multi-node scheduling, this project runs on a single node, so pod placement across machines never comes into play
