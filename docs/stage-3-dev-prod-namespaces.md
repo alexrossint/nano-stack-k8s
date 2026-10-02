@@ -26,18 +26,23 @@ kubectl get namespaces
 
 Shows both `prod` and `dev` listed alongside `default` and the built-in system namespaces.
 
-## Step 2, keep the YAML files namespace-agnostic
+## Step 2, folder structure
 
-None of the files we write specify a namespace inside `metadata`, on purpose. This means the exact same file can be applied into either namespace just by changing the `-n` flag on `kubectl apply`, no duplicating files, no editing between environments.
+Each environment gets its own fully separate folder, no shared files between them.
 
-### Confirm no file hardcodes a namespace
-
-```bash
-grep -r namespace k8s/
+```
+k8s/dev/app/
+k8s/dev/postgres/
+k8s/prod/app/
+k8s/prod/postgres/
 ```
 
-Empty output confirms it, whichever namespace is passed at apply time decides where the object lands.
+Each environment is fully self-contained, explicit duplication over shared templating, easier to reason about, especially while still learning. A whole environment can still be applied in one command
+
+```bash
+kubectl apply -R -f dev -n dev
+```
 
 ## What comes next
 
-With both namespaces ready, the plan going forward is to build the Postgres and app pieces once, apply them into `dev` first and prove they work end to end with a clean, empty database, then apply the same files into `prod`, and finish with the database migration and cutover happening together as one step.
+With both namespaces ready, the plan going forward is to build the Postgres and app pieces once in `dev`, prove they work end to end with a clean, empty database, then build the same setup in `prod`, and finish with the database migration and cutover happening together as one step.
