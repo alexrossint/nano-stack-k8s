@@ -4,7 +4,7 @@
 
 ## Step 1, create the ConfigMap
 
-Created the file, `k8s/app/configmap.yaml`
+Created the file, `k8s/dev/app/configmap.yaml`, and the same file, `k8s/prod/app/configmap.yaml`
 
 ```yaml
 apiVersion: v1
@@ -18,18 +18,18 @@ data:
 
 Unlike most objects, a ConfigMap has no `spec`, just `data`, plain key-value pairs. It isn't "doing" anything active, it's just storage other objects read from.
 
-### Apply it, dev first
+### Apply it, dev
 
 ```bash
-kubectl apply -f k8s/app/configmap.yaml -n dev
+kubectl apply -f dev/app/configmap.yaml -n dev
 ```
 
-### Apply it, then prod
+### Apply it, prod
 
 Each namespace needs its own copy, same as Secrets and everything else, nothing carries over automatically between namespaces.
 
 ```bash
-kubectl apply -f k8s/app/configmap.yaml -n prod
+kubectl apply -f prod/app/configmap.yaml -n prod
 ```
 
 ### Check it
@@ -41,7 +41,7 @@ kubectl get configmap nano-app-config -n prod
 
 ## Step 2, read from it in the Deployment
 
-Updated `k8s/app/deployment.yaml`, replacing the hardcoded `DB_NAME` and `DB_USER` values with references to the ConfigMap.
+Updated `k8s/dev/app/deployment.yaml` and `k8s/prod/app/deployment.yaml`, replacing the hardcoded `DB_NAME` and `DB_USER` values with references to the ConfigMap.
 
 ```yaml
           env:
@@ -69,8 +69,8 @@ Same `valueFrom` pattern already used for the Secret, just `configMapKeyRef` ins
 ### Apply it
 
 ```bash
-kubectl apply -f k8s/app/deployment.yaml -n dev
-kubectl apply -f k8s/app/deployment.yaml -n prod
+kubectl apply -f dev/app/deployment.yaml -n dev
+kubectl apply -f prod/app/deployment.yaml -n prod
 ```
 
 ### Check it
@@ -103,3 +103,10 @@ ConfigMaps and Secrets follow the same `valueFrom` pattern in a Pod's `env`, onl
 A ConfigMap can also be mounted as files in a volume, the same two-part `volumes` / `volumeMounts` pattern used for the Postgres Secret, each key becomes a file, useful for full config files rather than single values.
 ConfigMaps mounted as files update automatically when changed, ConfigMaps used as environment variables do not, those require the Pod to restart to pick up new values.
 Each namespace needs its own copy of a ConfigMap, same as Secrets, nothing is shared automatically across namespaces.
+
+## Note, folder structure
+
+```
+k8s/dev/app/configmap.yaml
+k8s/prod/app/configmap.yaml
+```

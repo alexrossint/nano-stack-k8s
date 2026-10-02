@@ -1,12 +1,12 @@
 # Stage 4, Postgres in Kubernetes: volume, secret, pod, service
 
-Building the database piece by piece: storage first, then the password, then the Pod that uses both, then a stable address to reach it. Every piece gets created twice, once in `dev` to prove it works safely, once in `prod` for the real thing, using the exact same files each time.
+Building the database piece by piece: storage first, then the password, then the Pod that uses both, then a stable address to reach it. Every piece gets created twice, once in `dev` to prove it works safely, once in `prod` for the real thing, each namespace with its own folder and its own files.
 
 ## Step 1, create storage for the database
 
 Postgres needs somewhere to keep its data that survives even if the Pod restarts. In Docker this was `docker volume create`. In Kubernetes, you don't create storage directly, you file a request for it, called a PersistentVolumeClaim (PVC), and the cluster provisions the actual storage automatically.
 
-Created the file, `k8s/postgres/pvc.yaml`
+Created the file, `k8s/dev/postgres/pvc.yaml`, and the same file, `k8s/prod/postgres/pvc.yaml`
 
 ```yaml
 apiVersion: v1
@@ -25,16 +25,16 @@ spec:
 `resources: requests: storage: 1Gi` is how much capacity we're asking for.
 No `storageClassName` specified, so it uses the cluster's default class, `local-path`, which carves storage out of the node's own disk.
 
-### Apply it, dev first
+### Apply it, dev
 
 ```bash
-kubectl apply -f k8s/postgres/pvc.yaml -n dev
+kubectl apply -f dev/postgres/pvc.yaml -n dev
 ```
 
-### Apply it, then prod
+### Apply it, prod
 
 ```bash
-kubectl apply -f k8s/postgres/pvc.yaml -n prod
+kubectl apply -f prod/postgres/pvc.yaml -n prod
 ```
 
 ### Check it
@@ -78,7 +78,7 @@ Shows the Secret exists in both, `DATA 1` confirming one key stored, the value i
 
 This is the actual container, same job `docker run postgres:16` did before, but now it also connects to the storage and the password we just created.
 
-Created the file, `k8s/postgres/pod.yaml`
+Created the file, `k8s/dev/postgres/pod.yaml`, and the same file, `k8s/prod/postgres/pod.yaml`
 
 ```yaml
 apiVersion: v1
@@ -121,16 +121,16 @@ spec:
 `volumeMounts` inside the container says where each attached thing appears, `data` lands at Postgres's actual data folder, `secret-vol` lands at `/etc/secrets`, making the password readable at `/etc/secrets/password`, matching what `POSTGRES_PASSWORD_FILE` expects.
 `labels: app: postgres` tags this Pod, so a Service can find it later.
 
-### Apply it, dev first
+### Apply it, dev
 
 ```bash
-kubectl apply -f k8s/postgres/pod.yaml -n dev
+kubectl apply -f dev/postgres/pod.yaml -n dev
 ```
 
-### Apply it, then prod
+### Apply it, prod
 
 ```bash
-kubectl apply -f k8s/postgres/pod.yaml -n prod
+kubectl apply -f prod/postgres/pod.yaml -n prod
 ```
 
 ### Check it
@@ -146,7 +146,7 @@ Status goes from `ContainerCreating` to `Running` in both. At this point, each n
 
 A Pod's IP changes every time it restarts, so nothing should rely on that IP directly. A Service gives a fixed address in front of the Pod instead, similar to an F5 VIP sitting in front of a backend server, clients always hit the same address, even if what's behind it changes.
 
-Created the file, `k8s/postgres/service.yaml`
+Created the file, `k8s/dev/postgres/service.yaml`, and the same file, `k8s/prod/postgres/service.yaml`
 
 ```yaml
 apiVersion: v1
@@ -166,16 +166,16 @@ spec:
 `targetPort` is the actual port it forwards to on the Pod.
 No `type` set, so it defaults to `ClusterIP`, internal only, nothing outside the cluster can reach the database directly, matching the choice we made in Docker of never publishing Postgres's port.
 
-### Apply it, dev first
+### Apply it, dev
 
 ```bash
-kubectl apply -f k8s/postgres/service.yaml -n dev
+kubectl apply -f dev/postgres/service.yaml -n dev
 ```
 
-### Apply it, then prod
+### Apply it, prod
 
 ```bash
-kubectl apply -f k8s/postgres/service.yaml -n prod
+kubectl apply -f prod/postgres/service.yaml -n prod
 ```
 
 ### Check it
@@ -186,3 +186,24 @@ kubectl get svc -n prod
 ```
 
 Shows `postgres` in both namespaces, type `ClusterIP`, each with its own fixed internal IP and port `5432`. Since names are scoped per namespace, both can be called simply `postgres`, dev's app will resolve to dev's database, prod's app will resolve to prod's database, no collision.
+
+## Note, folder structure
+
+Each environment now has its own self-contained folder, no file is shared between `dev` and `prod`.
+
+```
+k8s/dev/postgres/pvc.yaml
+k8s/dev/postgres/pod.yaml
+k8s/dev/postgres/service.yaml
+k8s/prod/postgres/pvc.yaml
+k8s/prod/postgres/pod.yaml
+k8s/prod/postgres/service.yaml
+```
+
+A whole environment's objects can also be applied in one go
+
+```bash
+kubectl apply -R -f dev/postgres -n dev
+```
+
+`-R` applies every file in the folder recursively, no need to run each file one at a time.

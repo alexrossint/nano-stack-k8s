@@ -1,6 +1,6 @@
 # Stage 7, Expose the app with Ingress
 
-NodePort worked, but it ties clients to raw port numbers, cluster-wide, easy to run out of, not something you'd actually hand to real users. Ingress replaces that with real hostnames instead, one clean entry point per app.
+NodePort worked, but it ties clients to raw port numbers, cluster-wide, easy to run out of, not something you'd actually hand to real users. Ingress replaces that with real hostnames instead, one clean entry point per app, per environment.
 
 ## Step 1, install an Ingress controller
 
@@ -40,7 +40,7 @@ The actual routing decisions happen inside `ingress-nginx-controller` itself, on
 
 ## Step 3, write the Ingress rule
 
-Created the file, `k8s/app/ingress.yaml`
+Created the file, `k8s/dev/app/ingress.yaml`
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -62,6 +62,12 @@ spec:
                   number: 5000
 ```
 
+Created the same file for prod, `k8s/prod/app/ingress.yaml`, with one value changed
+
+```yaml
+    - host: prod.nano.local
+```
+
 `ingressClassName: nginx` tells it which installed controller handles this.
 `host` is the hostname this rule matches, requests claiming to be for anything else are ignored by this rule.
 `path: /` with `pathType: Prefix` matches every URL under that hostname.
@@ -70,15 +76,13 @@ spec:
 ### Apply it, dev
 
 ```bash
-kubectl apply -f k8s/app/ingress.yaml -n dev
+kubectl apply -f dev/app/ingress.yaml -n dev
 ```
-
-Same file reused for prod, only the `host` value changes, `prod.nano.local` instead of `dev.nano.local`.
 
 ### Apply it, prod
 
 ```bash
-kubectl apply -f k8s/app/ingress.yaml -n prod
+kubectl apply -f prod/app/ingress.yaml -n prod
 ```
 
 ### Check it
@@ -130,3 +134,12 @@ Service picks one of its matching Pods
 ## On-prem comparison
 
 Like an F5 with multiple virtual servers, one listener, routing to different pools based on hostname, instead of one VIP per application.
+
+## Note, folder structure
+
+Each environment's Ingress rule lives in its own file, only the hostname differs.
+
+```
+k8s/dev/app/ingress.yaml
+k8s/prod/app/ingress.yaml
+```
