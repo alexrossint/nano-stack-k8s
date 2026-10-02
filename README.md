@@ -16,6 +16,8 @@ Learn Kubernetes fundamentals through a hands-on, staged project rather than iso
 
 A minimal Flask web app plus a Postgres database. It shows a page and counts visitors, storing the count in the database. The app itself is intentionally simple, the focus is the infrastructure around it.
 
+![img.png](img.png)
+
 ## Prerequisites
 
 Using Colima with Kubernetes on Mac, lightweight and easy to get running via Homebrew.
@@ -89,6 +91,9 @@ Each app's settings, database name and user, were typed directly into the Deploy
 
 ___
 
+With self-healing and scaling in place, a Pod could still receive traffic before it was actually ready, or stay running even after getting stuck. We needed Kubernetes to actively check each Pod's health, not just assume a running Pod means a working one.
+
+- [Stage 10 - Health Checks, Liveness and Readiness Probes](docs/stage-10-health-checks.md)
 
 ## What's Next
 
