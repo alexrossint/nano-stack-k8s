@@ -97,7 +97,6 @@ With self-healing and scaling in place, a Pod could still receive traffic before
 
 ## What's Next
 
-- Health checks, liveness and readiness probes, the real fix for the `503` gap seen during scaling
 - New app version 2.0, redesigned UI
 - Rolling updates and rollbacks
 - Resource limits
