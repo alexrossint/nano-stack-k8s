@@ -19,7 +19,7 @@ A minimal Flask web app plus a Postgres database. It shows a page and counts vis
 The first version of the app: 
 ![img_1.png](img_1.png)
 
-It will be redisigned later in [stage-11-rolling-updates.md.md](docs/stage-11-rolling-updates.md).
+It will be redisigned later in [Stage 11 - Rolling Updates and Rollbacks](docs/stage-11-rolling-updates.md)
 ![version2-0.png](docs/version2-0.png)
 
 ## Prerequisites
