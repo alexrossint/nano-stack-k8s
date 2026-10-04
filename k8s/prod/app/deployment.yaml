@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: nano-app
-          image: nano-stack-app:1.0
+          image: nano-stack-app:2.0
           env:
             - name: DB_HOST
               value: postgres

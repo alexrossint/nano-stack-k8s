@@ -95,10 +95,13 @@ With self-healing and scaling in place, a Pod could still receive traffic before
 
 - [Stage 10 - Health Checks, Liveness and Readiness Probes](docs/stage-10-health-checks.md)
 
+A redesign shipped, then an accidental mistake went live in prod. We needed a way to recover instantly, without manually rebuilding or hunting for the last good version.
+
+- [Stage 11 - Rolling Updates and Rollbacks](docs/stage-11-rolling-updates.md)
+
+
 ## What's Next
 
-- New app version 2.0, redesigned UI
-- Rolling updates and rollbacks
 - Resource limits
 - Helm, packaging the whole setup as a reusable chart
 - Basic CI/CD

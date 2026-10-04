@@ -23,7 +23,56 @@ def index():
     conn.commit()
     cur.close()
     conn.close()
-    return f"<h1>Nano Stack ☕</h1><p>You are visitor number {count}</p>"
+    return f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>Nano Stack</title>
+      <style>
+        body {{
+          font-family: -apple-system, sans-serif;
+          background: #121212;
+          color: #e5e5e5;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          margin: 0;
+        }}
+        .logo {{
+          font-size: 48px;
+          margin-bottom: 8px;
+          opacity: 0.85;
+        }}
+        .title {{
+          font-size: 26px;
+          font-weight: 600;
+          margin-bottom: 24px;
+          letter-spacing: -0.3px;
+          color: #d4d4d4;
+        }}
+        .label {{
+          font-size: 10px;
+          color: #737373;
+          margin-bottom: 10px;
+        }}
+        .count {{
+          font-size: 50px;
+          font-weight: 700;
+          color: #D3A53D;
+        }}
+      </style>
+    </head>
+    <body>
+      <div class="logo">💩</div>
+      <div class="title">NANO STACK</div>
+      <div class="label">You are visitor number:</div>
+      <div class="count">{count}</div>
+    </body>
+    </html>
+    """
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
