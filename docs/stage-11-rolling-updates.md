@@ -61,7 +61,9 @@ The warning is expected, `rollout undo` restores a previous revision directly, b
 
 ![rollback to version 2.0](rollback-to-2-0.png)
 
-*Look how the visitor count kept rising the whole time.* The rollback happened live, zero downtime, the same rolling mechanism that deployed 2.0 in the first place, just running in reverse.
+*Look how the visitor count kept rising the whole time.* 
+
+<br>The rollback happened live, zero downtime, the same rolling mechanism that deployed 2.0 in the first place, just running in reverse.
 
 ## Syncing the file back to reality
 
@@ -93,6 +95,8 @@ Every revision was tracked automatically, but `CHANGE-CAUSE` stayed empty, Kuber
 Tried it manually
 
 ```bash
+nano-stack-k8s % kubectl annotate deployment/nano-app -n prod kubernetes.io/change-cause="Deployed v2.0 redesign" --overwrite
+
 nano-stack-k8s % kubectl rollout history deployment/nano-app -n prod
 deployment.apps/nano-app 
 REVISION  CHANGE-CAUSE
