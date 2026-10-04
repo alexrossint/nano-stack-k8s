@@ -16,6 +16,7 @@ Learn Kubernetes fundamentals through a hands-on, staged project rather than iso
 
 A minimal Flask web app plus a Postgres database. It shows a page and counts visitors, storing the count in the database. The app itself is intentionally simple, the focus is the infrastructure around it.
 
+The first version of the app, which will be redisigned in later stage.
 ![img_1.png](img_1.png)
 
 ## Prerequisites
@@ -95,7 +96,9 @@ With self-healing and scaling in place, a Pod could still receive traffic before
 
 - [Stage 10 - Health Checks, Liveness and Readiness Probes](docs/stage-10-health-checks.md)
 
-A redesign shipped, then an accidental mistake went live in prod. We needed a way to recover instantly, without manually rebuilding or hunting for the last good version.
+___
+
+New version of the app: 2.0. A redesign shipped to "dev" and was approved, then an accidental mistake went live in prod. We needed a way to recover instantly, without manually rebuilding or hunting for the last good version.
 
 - [Stage 11 - Rolling Updates and Rollbacks](docs/stage-11-rolling-updates.md)
 
