@@ -105,10 +105,14 @@ New version of the app: 2.0. A redesign shipped to "dev" and was approved, then 
 
 - [Stage 11 - Rolling Updates and Rollbacks](docs/stage-11-rolling-updates)
 
+___
+
+Each app so far could use as much CPU and memory as it wanted, no cap at all. One misbehaving Pod, a memory leak, a stuck process, could eat up everything on the node, starving every other Pod running alongside it. We needed to set real boundaries.
+
+- [Stage 12 - Resource Limits, Requests and Limits for CPU and Memory](docs/stage-12-resource-limits.md)
 
 ## What's Next
 
-- Resource limits
 - Helm, packaging the whole setup as a reusable chart
 - Basic CI/CD
 
