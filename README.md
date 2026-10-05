@@ -111,6 +111,13 @@ Each app so far could use as much CPU and memory as it wanted, no cap at all. On
 
 - [Stage 12 - Resource Limits, Requests and Limits for CPU and Memory](docs/stage-12-resource-limits.md)
 
+___
+
+Resource limits were in place, but replica counts were still fixed. Traffic doesn't stay flat in the real world, we wanted Kubernetes to scale the app up under real load, and back down once things quieted, automatically.
+
+- [Stage 13 - Horizontal Pod Autoscaling, Scaling Replicas Automatically](docs/stage-13-hpa.md)
+
+
 ## What's Next
 
 - Helm, packaging the whole setup as a reusable chart
