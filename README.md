@@ -38,7 +38,7 @@ Docker Desktop with Minikube can also work as an alternative.
 
 - Python (Flask)
 - PostgreSQL
-- Docker
+- Docker, via Colima
 - Kubernetes, via Colima
 - kubectl
 - VS Code
