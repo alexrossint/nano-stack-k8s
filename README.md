@@ -42,6 +42,7 @@ Docker Desktop with Minikube can also work as an alternative.
 - Kubernetes, via Colima
 - kubectl
 - VS Code
+- git
 
 ## Stages
 
