@@ -98,25 +98,25 @@ ___
 
 With self-healing and scaling in place, a Pod could still receive traffic before it was actually ready, or stay running even after getting stuck. We needed Kubernetes to actively check each Pod's health, not just assume a running Pod means a working one.
 
-- [Stage 10 - Health Checks, Liveness and Readiness Probes](docs/stage-10-health-checks.md)
+[Stage 10 - Health Checks, Liveness and Readiness Probes](docs/stage-10-health-checks.md)
 
 ___
 
 New version of the app: 2.0. A redesign shipped to "dev" and was approved, then an accidental mistake went live in prod. We needed a way to recover instantly, without manually rebuilding or hunting for the last good version.
 
-- [Stage 11 - Rolling Updates and Rollbacks](docs/stage-11-rolling-updates)
+[Stage 11 - Rolling Updates and Rollbacks](docs/stage-11-rolling-updates)
 
 ___
 
 Each app so far could use as much CPU and memory as it wanted, no cap at all. One misbehaving Pod, a memory leak, a stuck process, could eat up everything on the node, starving every other Pod running alongside it. We needed to set real boundaries.
 
-- [Stage 12 - Resource Limits, Requests and Limits for CPU and Memory](docs/stage-12-resource-limits.md)
+[Stage 12 - Resource Limits, Requests and Limits for CPU and Memory](docs/stage-12-resource-limits.md)
 
 ___
 
 Resource limits were in place, but replica counts were still fixed. Traffic doesn't stay flat in the real world, we wanted Kubernetes to scale the app up under real load, and back down once things quieted, automatically.
 
-- [Stage 13 - Horizontal Pod Autoscaling, Scaling Replicas Automatically](docs/stage-13-hpa.md)
+[Stage 13 - Horizontal Pod Autoscaling, Scaling Replicas Automatically](docs/stage-13-hpa.md)
 
 
 ## What's Next
