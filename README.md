@@ -117,7 +117,7 @@ ___
 
 Resource limits were in place, but replica counts were still fixed. Traffic doesn't stay flat in the real world, we wanted Kubernetes to scale the app up under real load, and back down once things quieted, automatically.
 
-- [Stage 13 - Horizontal Pod Autoscaling, Scaling Replicas Automatically](docs/stage-13-hpa.md)
+[Stage 13 - Horizontal Pod Autoscaling, Scaling Replicas Automatically](docs/stage-13-hpa.md)
 
 
 ## What's Next
