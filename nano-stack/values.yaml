@@ -1,0 +1,32 @@
+# App image
+image:
+  repository: nano-stack-app
+  tag: "2.6"
+
+# Number of app replicas
+replicaCount: 2
+
+# App Service, how it's exposed externally
+service:
+  type: NodePort
+  port: 5000
+  nodePort: 30080
+
+# Ingress hostname
+ingress:
+  host: dev.nano.local
+
+# Resource requests and limits for the app
+resources:
+  requests:
+    cpu: "10m"
+    memory: "32Mi"
+  limits:
+    cpu: "200m"
+    memory: "64Mi"
+
+# Autoscaling
+autoscaling:
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
