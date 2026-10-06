@@ -1,6 +1,6 @@
 # Nano Stack
 
-A small learning project simulating a 2-person startup building and deploying a simple web app, from plain Docker through a migration to Kubernetes, all running locally.
+This is a small learning project simulating a 2-person startup building and deploying a simple web app, from plain Docker through a migration to Kubernetes, all running locally.
 
 ## The Story
 
