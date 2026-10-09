@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.appName}}
+data:
+  DB_NAME: {{ .Values.dbName}}
+  DB_USER: {{ .Values.dbUser}}

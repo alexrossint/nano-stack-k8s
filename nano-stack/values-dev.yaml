@@ -1,0 +1,3 @@
+nodePort: 30080
+image:
+  tag: "2.3"

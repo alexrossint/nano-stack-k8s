@@ -1,32 +1,33 @@
-# App image
+appName: nano-app
+
+domain: nano.local
+
+appPort: 5000
+
+# HPA
+minReplicas: 2
+maxReplicas: 10
+cpuTarget: 50
+
+# Postgres
+dbHost: postgres
+dbName: nanostack
+dbUser: nanouser
+
+# Image
 image:
   repository: nano-stack-app
-  tag: "2.6"
 
-# Number of app replicas
-replicaCount: 2
+# Deployment Resources
+cpuRequest: 10m
+memoryRequest: 25Mi
+cpuLimit: 20m
+memoryLimit: 50Mi
 
-# App Service, how it's exposed externally
-service:
-  type: NodePort
-  port: 5000
-  nodePort: 30080
+# Postgres Resources
+PGcpuRequest: 50m
+PGmemoryRequest: 100Mi
+PGcpuLimit: 100m
+PGmemoryLimit: 200Mi
 
-# Ingress hostname
-ingress:
-  host: dev.nano.local
-
-# Resource requests and limits for the app
-resources:
-  requests:
-    cpu: "10m"
-    memory: "32Mi"
-  limits:
-    cpu: "200m"
-    memory: "64Mi"
-
-# Autoscaling
-autoscaling:
-  minReplicas: 2
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 50
+pvcName: postgres-pvc

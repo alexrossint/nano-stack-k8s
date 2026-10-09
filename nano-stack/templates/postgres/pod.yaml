@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ .Values.dbHost }}
+  labels:
+    app: {{ .Values.dbHost }}
+spec:
+  containers:
+    - name: {{ .Values.dbHost }}
+      image: postgres:16
+      env:
+        - name: POSTGRES_USER
+          value: {{ .Values.dbUser }}
+        - name: POSTGRES_DB
+          value: {{ .Values.dbName }}
+        - name: POSTGRES_PASSWORD_FILE
+          value: /etc/secrets/password
+      ports:
+        - containerPort: 5432
+      resources:
+        requests:
+          cpu: {{ .Values.PGcpuRequest }}
+          memory: {{ .Values.PGmemoryRequest}}
+        limits:
+          cpu: {{ .Values.PGcpuLimit}}
+          memory: {{ .Values.PGmemoryLimit}}
+      volumeMounts:
+        - name: data
+          mountPath: /var/lib/postgresql/data
+        - name: secret-vol
+          mountPath: /etc/secrets
+          readOnly: true
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: {{ .Values.pvcName }}
+    - name: secret-vol
+      secret:
+        secretName: postgres-secret

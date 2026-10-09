@@ -119,9 +119,14 @@ Resource limits were in place, but replica counts were still fixed. Traffic does
 
 [Stage 13 - Horizontal Pod Autoscaling, Scaling Replicas Automatically](docs/stage-13-hpa.md)
 
+___
+
+Dev and prod were two folders of almost identical files. Every shared change had to be made twice, and the two folders could slowly drift apart. We wanted one set of files, plus a few small values per environment.
+
+- [Stage 14 - Helm, One Chart for Dev and Prod](docs/stage-14-helm.md)
+
 
 ## What's Next
 
-- Helm, packaging the whole setup as a reusable chart
 - Basic CI/CD
 

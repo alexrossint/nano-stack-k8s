@@ -20,6 +20,7 @@ def index():
     cur.execute("INSERT INTO visits (id, count) VALUES (1, 0) ON CONFLICT DO NOTHING")
     cur.execute("UPDATE visits SET count = count + 1 WHERE id = 1 RETURNING count")
     count = cur.fetchone()[0]
+    env_name = os.environ.get("ENV_NAME", "")
     conn.commit()
     cur.close()
     conn.close()
@@ -66,8 +67,8 @@ def index():
       </style>
     </head>
     <body>
-      <div class="logo">💩</div>
-      <div class="title">NANO STACK</div>
+      <div class="logo">🚀</div>
+      <div class="title">Welcome to "nano stack" - {env_name}</div>
       <div class="label">You are visitor number:</div>
       <div class="count">{count}</div>
     </body>
