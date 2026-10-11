@@ -1,0 +1,9 @@
+name: test-runner
+on: workflow_dispatch
+jobs:
+  test:
+    runs-on: self-hosted
+    steps:
+      - run: hostname
+      - run: docker version
+      - run: kubectl get nodes
