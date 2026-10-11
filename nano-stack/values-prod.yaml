@@ -1,3 +1,3 @@
 nodePort: 30081
 image:
-  tag: "2.3"
+  tag: "f11cc16"
