@@ -59,7 +59,7 @@ jobs:
         run: kubectl rollout status deployment/nano-app -n prod --timeout=120s
 
       - name: Smoke test
-        run: curl -fsS http://prod.nano.local/nothing
+        run: curl -fsS http://prod.nano.local
 
       - name: Roll back if anything failed
         if: failure()
