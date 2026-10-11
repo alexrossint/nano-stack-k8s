@@ -125,6 +125,11 @@ Dev and prod were two folders of almost identical files. Every shared change had
 
 - [Stage 14 - Helm, One Chart for Dev and Prod](docs/stage-14-helm.md)
 
+___
+
+Every release was still typed by hand: build the image, pick a tag, run `helm upgrade`, roll back if something broke. One wrong tag cost real time to find. We wanted a push to GitHub to do all of it, check that the app answers, wait for approval before touching prod, and undo the release by itself if the check fails.
+
+- [Stage 15 - CI/CD, Build, Deploy and Rollback Automatically](docs/stage-15-ci-cd.md)
 
 ## What's Next
 
