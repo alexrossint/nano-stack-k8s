@@ -10,6 +10,6 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - run: docker build -t nano-stack-app:$(git rev-parse --short HEAD) ./app
       - run: docker images nano-stack-app
