@@ -67,7 +67,7 @@ def index():
       </style>
     </head>
     <body>
-      <div class="logo">🚀</div>
+      <div class="logo">✋🏻</div>
       <div class="title">Welcome to "nano stack" - {env_name}</div>
       <div class="label">You are visitor number:</div>
       <div class="count">{count}</div>
