@@ -133,5 +133,5 @@ Every release was still typed by hand: build the image, pick a tag, run `helm up
 
 ## What's Next
 
-- Basic CI/CD
+- Review and correct the README if needed
 
