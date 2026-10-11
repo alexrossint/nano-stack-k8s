@@ -22,7 +22,8 @@ jobs:
         run: sed -i '' "/tag:/s/\".*\"/\"$(git rev-parse --short HEAD)\"/" nano-stack/values-dev.yaml
 
       - name: Deploy to dev
-        run: helm upgrade nano-stack nano-stack/ -n dev -f nano-stack/values-dev.yaml
+        run: |
+          helm upgrade nano-stack nano-stack/ -n dev -f nano-stack/values-dev.yaml --description "$(git rev-parse --short HEAD): $(git log -1 --pretty=%s)"
 
       - name: Commit the new tag
         run: |
