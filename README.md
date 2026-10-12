@@ -131,7 +131,34 @@ Every release was still typed by hand: build the image, pick a tag, run `helm up
 
 - [Stage 15 - CI/CD, Build, Deploy and Rollback Automatically](docs/stage-15-ci-cd.md)
 
-## What's Next
+## Project Summary
 
-- Review and correct the README if needed
+Nano Stack is a small web app, a Flask visitor counter backed by Postgres. The app is simple on purpose, and the focus is everything around it. I started with plain Docker, then migrated it to Kubernetes in two environments, and finally automated the releases with a pipeline. Everything runs locally on my Mac with Colima.
+
+**What I built**
+
+- The app and database in Docker, then the same setup in Kubernetes with separate `dev` and `prod` namespaces
+- A live database migration with `pg_dump`, keeping the visitor count
+- A random password stored in a Secret, storage on a PersistentVolumeClaim, and settings in a ConfigMap
+- Real hostnames through an nginx Ingress, instead of raw port numbers
+- Health probes, resource limits, and autoscaling that I tested under real load
+- Rolling updates and a rollback after a bad release reached prod
+- One Helm chart for both environments, with a small values file for each
+- A GitHub Actions pipeline on a self-hosted runner: it builds the image, deploys to dev, runs a smoke test, waits for my approval before prod, and rolls back by itself if prod fails
+
+**What went wrong along the way**
+
+I hit real incidents and fixed them, and they're written up in the stage notes: a port conflict with macOS, a mistyped password, a database killed for running out of memory when the app scaled up, and a pipeline blocked by a missing token permission.
+
+**Limits**
+
+The cluster has one node and runs on a laptop, so cloud services, multi-node scheduling, and a production database setup aren't covered. The sections below list what I plan to add next.
+
+## What's Next
+The core path is done. The project stays as the base for the next skills, each added as a new stage.
+
+- Monitoring: Prometheus and Grafana installed with Helm, plus a dashboard and one alert for the app
+- Scripting: Bash and Python scripts for real jobs, like a database backup and a health check
+- AWS basics: VPC, EC2 and S3
+- Terraform: build the AWS network and servers as code, then run the app there
 
