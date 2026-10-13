@@ -193,6 +193,84 @@ Prod deploys the same image dev built. `github.sha` is the full commit ID, and `
 
 The commit step comes after the rollback and runs only on success, so a failed prod deploy never reaches Git.
 
+### The full [ci.yaml]
+``` yaml
+name: CI
+
+on:
+  push:
+    branches: [main]
+    paths: ['app/**']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Build image
+        run: docker build -t nano-stack-app:$(git rev-parse --short HEAD) ./app
+
+      - name: Write the new tag into values-dev.yaml
+        run: sed -i '' "/tag:/s/\".*\"/\"$(git rev-parse --short HEAD)\"/" nano-stack/values-dev.yaml
+
+      - name: Deploy to dev
+        run: |
+          helm upgrade nano-stack nano-stack/ -n dev -f nano-stack/values-dev.yaml --description "$(git rev-parse --short HEAD): $(git log -1 --pretty=%s)"
+
+      - name: Wait for rollout
+        run: kubectl rollout status deployment/nano-app -n dev --timeout=120s
+
+      - name: Smoke test
+        run: curl -fsS http://dev.nano.local
+
+      - name: Commit the new tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add nano-stack/values-dev.yaml
+          git diff --staged --quiet && exit 0
+          git commit -m "Deploy $(git rev-parse --short HEAD) to dev"
+          git push origin HEAD:main
+  deploy-prod:
+    needs: build-and-deploy
+    runs-on: self-hosted
+    environment: production
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - name: Write the new tag into values-prod.yaml
+        run: sed -i '' "/tag:/s/\".*\"/\"$(echo ${{ github.sha }} | cut -c1-7)\"/" nano-stack/values-prod.yaml
+
+      - name: Deploy to prod
+        run: |
+          helm upgrade nano-stack nano-stack/ -n prod -f nano-stack/values-prod.yaml --description "$(echo ${{ github.sha }} | cut -c1-7): promoted from dev"
+
+      - name: Wait for rollout
+        run: kubectl rollout status deployment/nano-app -n prod --timeout=120s
+
+      - name: Smoke test
+        run: curl -fsS http://prod.nano.local
+
+      - name: Roll back if anything failed
+        if: failure()
+        run: helm rollback nano-stack -n prod
+
+      - name: Commit the new tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add nano-stack/values-prod.yaml
+          git diff --staged --quiet && exit 0
+          git commit -m "Deploy ${{ github.sha }} to prod"
+          git push origin HEAD:main
+```
 ### Prove the rollback
 
 Temporarily changed the prod smoke test URL to `http://prod.nano.local/nothing`, which returns a 404. After approving the deploy, the log showed:
