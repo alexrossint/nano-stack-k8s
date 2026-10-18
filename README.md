@@ -105,7 +105,7 @@ ___
 
 New version of the app: 2.0. A redesign shipped to "dev" and was approved, then an accidental mistake went live in prod. We needed a way to recover instantly, without manually rebuilding or hunting for the last good version.
 
-[Stage 11 - Rolling Updates and Rollbacks](docs/stage-11-rolling-updates)
+[Stage 11 - Rolling Updates and Rollbacks](docs/stage-11-rolling-updates.md)
 
 ___
 
