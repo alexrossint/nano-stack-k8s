@@ -320,3 +320,9 @@ The pipeline writes to the same branch a person pushes to, so a pull comes befor
 ## What stays outside the pipeline
 
 The namespaces, `postgres-secret` in each namespace, the nginx ingress controller, and the lines in `/etc/hosts`.
+
+## Project Summary
+
+Nano Stack is a small web app, a Flask visitor counter backed by Postgres. The app is simple on purpose, and the focus is everything around it. I started with plain Docker, then migrated it to Kubernetes in two environments, and finally automated the releases with a pipeline. Everything runs locally on my Mac with Colima.
+
+[Back to README](/README.md)

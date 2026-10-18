@@ -87,3 +87,7 @@ docker run               becomes a Pod, then a Deployment
 ## Note
 
 The password is in plain text here, fine for a lab. Kubernetes Secrets replace this later.
+
+## Next stage
+We created an environment in Docker because it seemed easy at the moment, simple, fast to ship, not really secured.<br>
+[Stage 2 - Write app, build and run the web service](/docs/stage-2-deploy-app.md)<br>

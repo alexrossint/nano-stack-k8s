@@ -55,3 +55,10 @@ docker run -d \
 ```
 
 The network is what lets the app find Postgres by name. We publish a port only for the app, because the browser needs to reach it. The database stays internal.
+
+## Next stage
+Our user database is growing, latency spikes and crashes during weekends. We cannot maintain it in Docker anymore.
+<br>A decision was made to migrate to Kubernetes and make it secured and scalable to traffic spikes. <br>We also create a DEV
+enviroment to test new features in the future. <br>
+
+[Stage 3 - Create "dev" and "prod" Namespaces](/docs/stage-3-dev-prod-namespaces.md)

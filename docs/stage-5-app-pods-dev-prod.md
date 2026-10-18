@@ -179,3 +179,8 @@ A whole environment's app objects can also be applied in one go
 ```bash
 kubectl apply -R -f dev/app -n dev
 ```
+
+## Next stage
+The real data still lived in the old Docker setup. Before trusting Kubernetes with production, we needed to move that data over safely, without losing anything, and without real downtime for users.
+
+[Stage 6 - Database migration and cutover](/docs/stage-6-migration-cutover.md)

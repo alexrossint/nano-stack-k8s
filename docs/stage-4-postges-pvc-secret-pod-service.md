@@ -207,3 +207,8 @@ kubectl apply -R -f dev/postgres -n dev
 ```
 
 `-R` applies every file in the folder recursively, no need to run each file one at a time.
+
+## Next stage
+With the database ready, the app itself needs to run the same way, built from the same image, pointed at the right database, and reachable by something other than its own changing IP.
+
+[Stage 5 - Deploy App Pod and Service for "dev" and "prod" Namespaces](/docs/stage-5-app-pods-dev-prod.md)

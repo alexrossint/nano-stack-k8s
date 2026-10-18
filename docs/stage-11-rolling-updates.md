@@ -117,3 +117,7 @@ A manual rollback leaves the YAML file out of sync with the cluster, worth check
 `rollout history` keeps a log automatically, but it's only readable if `CHANGE-CAUSE` is actually recorded.
 A small mistake, one wrong logo, is exactly the kind of everyday incident rollback exists for, not just big catastrophic failures.
 
+## Next stage
+Each app so far could use as much CPU and memory as it wanted, no cap at all. One misbehaving Pod, a memory leak, a stuck process, could eat up everything on the node, starving every other Pod running alongside it. We needed to set real boundaries.
+
+[Stage 12 - Resource Limits, Requests and Limits for CPU and Memory](/docs/stage-12-resource-limits.md)

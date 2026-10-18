@@ -253,3 +253,8 @@ A chart is a folder of templates with blanks, plus values files that fill them i
 Helm only manages objects it created, and tracks them as a release with numbered revisions.
 
 Anything that has to match in two files, like a name, a port or a database user, belongs in one value.
+
+## Next stage
+Every release was still typed by hand: build the image, pick a tag, run `helm upgrade`, roll back if something broke. One wrong tag cost real time to find. We wanted a push to GitHub to do all of it, check that the app answers, wait for approval before touching prod, and undo the release by itself if the check fails.
+
+[Stage 15 - CI/CD, Build, Deploy and Rollback Automatically](/docs/stage-15-ci-cd.md)

@@ -153,3 +153,8 @@ Auto-generated Pod names are a sign a Deployment (not a bare Pod) is managing th
 Self-healing has a real, visible recovery window when Pods are removed before replacements exist.
 A Service load-balances automatically across every Pod matching its selector, scaling up Pods means the Service immediately starts spreading load across all of them, no extra configuration needed.
 Bringing up new replicas before removing old instances avoids downtime entirely, this is the core idea behind zero-downtime deployments, covered more fully in the Rolling Updates stage later.
+
+## Next stage
+Each app's settings, database name and user, were typed directly into the Deployment itself, mixed in with how the Pod runs. We wanted plain, non-sensitive config kept separate and reusable, the same way Secrets already separated out the password.
+
+[Stage 9 - ConfigMap, moving plain settings out of the Deployment](/docs/stage-9-configmap.md)

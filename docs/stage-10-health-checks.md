@@ -128,3 +128,8 @@ Applying a change only changes the Deployment's Pod template, Kubernetes always 
 ## Note, prod
 
 Prod's `deployment.yaml` has the same readiness and liveness probes added, the hands-on failure tests (readiness delete, liveness break-and-restore) were only run in `dev`, not repeated against prod.
+
+## Next stage
+New version of the app: 2.0. A redesign shipped to "dev" and was approved, then an accidental mistake went live in prod. We needed a way to recover instantly, without manually rebuilding or hunting for the last good version.
+
+[Stage 11 - Rolling Updates and Rollbacks](/docs/stage-11-rolling-updates.md)

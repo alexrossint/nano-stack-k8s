@@ -167,3 +167,8 @@ A short burst of load doesn't show sustained scaling, average CPU can drop back 
 Scaling one layer doesn't automatically protect what it depends on, 9 app replicas hammering one small Postgres Pod moved the bottleneck instead of fixing it, and nearly took the database down.
 Test-only debug endpoints, like `/stress`, are a real security risk if they ever reach a real production app, worth removing entirely once testing is done.
 Scale-down happens gradually, with an intentional cooldown, to avoid flapping replicas up and down from brief, temporary spikes.
+
+## Next stage
+Dev and prod were two folders of almost identical files. Every shared change had to be made twice, and the two folders could slowly drift apart. We wanted one set of files, plus a few small values per environment.
+
+[Stage 14 - Helm, One Chart for Dev and Prod](/docs/stage-14-helm.md)

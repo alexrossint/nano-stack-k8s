@@ -110,3 +110,8 @@ Each namespace needs its own copy of a ConfigMap, same as Secrets, nothing is sh
 k8s/dev/app/configmap.yaml
 k8s/prod/app/configmap.yaml
 ```
+
+## Next stage
+With self-healing and scaling in place, a Pod could still receive traffic before it was actually ready, or stay running even after getting stuck. We needed Kubernetes to actively check each Pod's health, not just assume a running Pod means a working one.
+
+[Stage 10 - Health Checks, Liveness and Readiness Probes](/docs/stage-10-health-checks.md)

@@ -117,3 +117,8 @@ Setting resources too low doesn't make an app "lighter", it just guarantees it g
 A healthy rollout, backed by readiness probes, protects existing good Pods even when a new version is completely broken.
 Bare Pods can't have most fields, including resources, updated in place, they must be deleted and recreated, Deployments handle this automatically.
 Choosing requests and limits should start from real observed usage (`kubectl top pod`), not arbitrary numbers.
+
+## Next stage
+Resource limits were in place, but replica counts were still fixed. Traffic doesn't stay flat in the real world, we wanted Kubernetes to scale the app up under real load, and back down once things quieted, automatically.
+
+[Stage 13 - Horizontal Pod Autoscaling, Scaling Replicas Automatically](/docs/stage-13-hpa.md)

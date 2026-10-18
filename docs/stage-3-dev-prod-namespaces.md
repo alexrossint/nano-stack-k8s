@@ -46,3 +46,8 @@ kubectl apply -R -f dev -n dev
 ## What comes next
 
 With both namespaces ready, the plan going forward is to build the Postgres and app pieces once in `dev`, prove they work end to end with a clean, empty database, then build the same setup in `prod`, and finish with the database migration and cutover happening together as one step.
+
+## Next stage
+We want our database setup secured from the start, no plain-text passwords, storage that survives a crash, and a stable way for the app to find it.
+
+[Stage 4 - Deploy Postgres Pods with Volume, Secret and Service for both Namespaces](/docs/stage-4-postges-pvc-secret-pod-service.md)

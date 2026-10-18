@@ -69,3 +69,9 @@ old Docker stack    stopped, not removed, kept as a fallback
 prod (Kubernetes)    the real app, real data, fully migrated
 dev (Kubernetes)     still isolated, still its own separate database
 ```
+
+## Next stage
+### The app runs on Kubernetes now, a few things still need hardening
+Clients were given raw port numbers to reach the app, not something we could hand out in a real company. We needed one clean, stable entry point instead.
+
+[Stage 7 - Expose the App with Ingress for "dev" and "prod"](/docs/stage-7-ingress.md)

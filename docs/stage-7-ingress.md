@@ -143,3 +143,8 @@ Each environment's Ingress rule lives in its own file, only the hostname differs
 k8s/dev/app/ingress.yaml
 k8s/prod/app/ingress.yaml
 ```
+
+## Next stage
+Right now, each app runs as exactly one Pod. If that one Pod crashes, or gets overwhelmed by traffic, there's no backup, no second copy to take the load or keep serving while it recovers.
+
+[Stage 8 - Deployment for Scaling and Replicas](/docs/stage-8-scaling.md)
